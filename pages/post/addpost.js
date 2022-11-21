@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>Comment</div>;
+  return <div>Add Post</div>;
 }
