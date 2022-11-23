@@ -54,7 +54,7 @@ export default function Home() {
         {currentPosts.map((post, index) => {
           return (
             <Link
-              href={`/${index}`}
+              href={`/${post._id}`}
               style={{ color: "inherit", textDecoration: "inherit" }}
             >
               <div className={styles.box} id={index}>
@@ -63,11 +63,19 @@ export default function Home() {
                   <div className={styles.date}>{post.date}</div>
                 </div>
                 <div className={styles.body}>{post.body}</div>
-                <div className={styles.comments}>
-                  <span className="material-symbols-outlined">Comment</span>
-                  <div className={styles.comment}>
-                    {`${post.comments.length}`} Comments
+                <div className={styles.bottom}>
+                  <div className={styles.comments}>
+                    <span className="material-symbols-outlined">Comment</span>
+                    <div className={styles.comment}>
+                      {`${post.comments.length}`} Comments
+                    </div>
                   </div>
+                  <Link
+                    href={`/${post._id}/edit`}
+                    style={{ color: "inherit", textDecoration: "inherit" }}
+                  >
+                    <span className="material-symbols-outlined">edit</span>
+                  </Link>
                 </div>
               </div>
             </Link>
