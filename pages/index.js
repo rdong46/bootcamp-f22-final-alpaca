@@ -8,6 +8,7 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [currentPosts, setCurrentPosts] = useState([]);
+  const [addPost, setAddPost] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3000/api/example")
@@ -41,16 +42,43 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.posts}>
-        <div className={styles.submit}>
-          <Image src={temp} alt="logo" width={36} height="auto" />
-          <Link
-            className={styles.create}
-            href={`/addpost`}
-            style={{ color: "inherit", textDecoration: "inherit" }}
-          >
-            Create Post
-          </Link>
-        </div>
+        {!addPost ? (
+          <div className={styles.submit}>
+            <Image src={temp} alt="logo" width={36} height="auto" />
+            <button
+              className={styles.create}
+              style={{ color: "inherit", textDecoration: "inherit" }}
+              onClick={() => {
+                setAddPost(true);
+              }}
+            >
+              Create Post
+            </button>
+          </div>
+        ) : (
+          <div className={styles.submit}>
+            <form className={styles.input}>
+              <input
+                type="text"
+                id="title"
+                placeholder="Title"
+                className={styles.titleInput}
+              ></input>
+              <textarea
+                placeholder="Text(optional)"
+                className={styles.bodyInput}
+              ></textarea>
+              <button
+                className={styles.submitButton}
+                onClick={() => {
+                  setAddPost(false);
+                }}
+              >
+                Post
+              </button>
+            </form>
+          </div>
+        )}
         {currentPosts.map((post, index) => {
           return (
             <Link
@@ -60,7 +88,10 @@ export default function Home() {
               <div className={styles.box} id={index}>
                 <div className={styles.first}>
                   <div className={styles.title}>{post.title}</div>
-                  <div className={styles.date}>{post.date}</div>
+                  <div className={styles.date}>
+                    <div>{post.date.substr(0, 10)}</div>
+                    <div>{post.date.substr(11, 8)}</div>
+                  </div>
                 </div>
                 <div className={styles.body}>{post.body}</div>
                 <div className={styles.bottom}>
