@@ -39,6 +39,7 @@ export default function Home() {
         && document.getElementById("text").value == "") {
         console.log("NOTHING")
         setAddPost(true);
+        event.preventDefault();
     } else {
         setAddPost(false);
     }
@@ -54,14 +55,15 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.posts}>
-        { !addPost ? (
+
+        {!addPost ? (
           <div className={styles.submit}>
             <Image src={temp} alt="logo" width={36} height="auto" />
             <button
               className={styles.create}
               style={{ color: "inherit", textDecoration: "inherit" }}
               onClick={() => {
-                console.log("HI");
+                console.log("hi");
                 setAddPost(true);
               }}
             >
@@ -84,8 +86,8 @@ export default function Home() {
               ></textarea>
               <button
                 className={styles.submitButton}
-                onClick={() => {
-                  post()
+                onClick={(event) => {
+                  post(event)
                   console.log(addPost)
                 }}
               >
