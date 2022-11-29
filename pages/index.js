@@ -9,9 +9,7 @@ export default function Home() {
   const [pageNumber, setPageNumber] = useState(0);
   const [currentPosts, setCurrentPosts] = useState([]);
   const [addPost, setAddPost] = useState(false);
-  const [comment, setComment] = useState({
-    conent: ''
-})
+  const [comment, setComment] = useState('');
 
   useEffect(() => {
     fetch("http://localhost:3000/api/example")
@@ -40,18 +38,12 @@ export default function Home() {
     console.log(document.getElementById("title").value);
     if (document.getElementById("title").value == ""
         && document.getElementById("text").value == "") {
-        console.log("NOTHING")
         setAddPost(true);
         event.preventDefault();
     } else {
         setAddPost(false);
     }
     
-  }
-
-  function comment() {
-
-
   }
 
   return (
