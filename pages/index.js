@@ -63,7 +63,6 @@ export default function Home() {
               className={styles.create}
               style={{ color: "inherit", textDecoration: "inherit" }}
               onClick={() => {
-                console.log("hi");
                 setAddPost(true);
               }}
             >
