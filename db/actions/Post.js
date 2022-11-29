@@ -12,4 +12,9 @@ async function findAllPosts() {
   return await Post.find({});
 }
 
-export { findAllPosts };
+async function findPostById(id) {
+  await dbConnect();
+  return await Post.findById(id);
+}
+
+export { findAllPosts, findPostById };

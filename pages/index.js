@@ -32,6 +32,19 @@ export default function Home() {
       posts.slice((pageNumber + 1) * 10, (pageNumber + 1) * 10 + 10)
     );
   }
+  
+  function post() {
+    console.log(document.getElementById("title").value);
+    if (document.getElementById("title").value == ""
+        && document.getElementById("text").value == "") {
+        console.log("NOTHING")
+        setAddPost(true);
+        event.preventDefault();
+    } else {
+        setAddPost(false);
+    }
+    
+  }
 
   return (
     <div>
@@ -42,6 +55,7 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.posts}>
+
         {!addPost ? (
           <div className={styles.submit}>
             <Image src={temp} alt="logo" width={36} height="auto" />
@@ -65,13 +79,15 @@ export default function Home() {
                 className={styles.titleInput}
               ></input>
               <textarea
+                id="text"
                 placeholder="Text(optional)"
                 className={styles.bodyInput}
               ></textarea>
               <button
                 className={styles.submitButton}
-                onClick={() => {
-                  setAddPost(false);
+                onClick={(event) => {
+                  post(event)
+                  console.log(addPost)
                 }}
               >
                 Post
