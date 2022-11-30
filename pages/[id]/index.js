@@ -18,6 +18,13 @@ export default function Post() {
 
   return (
     <div>
+      <div className={styles.header}>
+        <div className={styles.logo}>
+          <Image src={temp} alt="logo" width={72} height="auto" />
+          <div>Temporary App Name</div>
+        </div>
+      </div>
+
       <div>{post.title}</div>
       <div>{post.body}</div>
       <div> Comments {
@@ -51,3 +58,5 @@ export default function Post() {
       </div>
   );
 }
+
+
