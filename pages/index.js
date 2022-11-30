@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import temp from "../public/temp.jpg";
 import styles from "../styles/Home.module.css";
@@ -11,6 +12,7 @@ export default function Home() {
   const [addPost, setAddPost] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newBody, setNewBody] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     fetch("http://localhost:3000/api/example")
@@ -91,11 +93,13 @@ export default function Home() {
                       body: newBody,
                       comments: [],
                     };
+                    setAddPost(false);
                     fetch("http://localhost:3000/api/add", {
                       method: "POST",
                       body: JSON.stringify(body),
+                    }).then((response) => {
+                      console.log(response);
                     });
-                    setAddPost(false);
                   }
                 }}
               >
@@ -104,54 +108,61 @@ export default function Home() {
             </div>
           </div>
         )}
-        {currentPosts.map((post, index) => {
-          return (
-            <Link
-              href={`/${post._id}`}
-              style={{ color: "inherit", textDecoration: "inherit" }}
-            >
-              <div className={styles.box} id={index}>
-                <div className={styles.first}>
-                  <div className={styles.title}>{post.title}</div>
-                  <div className={styles.date}>
-                    <div>{post.date.substr(0, 10)}</div>
-                    <div>{post.date.substr(11, 8)}</div>
-                  </div>
-                </div>
-                <div className={styles.body}>{post.body}</div>
-                <div className={styles.bottom}>
-                  <div className={styles.comments}>
-                    <span className="material-symbols-outlined">Comment</span>
-                    <div className={styles.comment}>
-                      {`${post.comments.length}`} Comments
+        <div>
+          {currentPosts.map((post, index) => {
+            return (
+              <Link
+                href={`/${post._id}`}
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                <div className={styles.box} id={index}>
+                  <div className={styles.first}>
+                    <div className={styles.title}>{post.title}</div>
+                    <div className={styles.date}>
+                      <div>{post.date.substr(0, 10)}</div>
+                      <div>{post.date.substr(11, 8)}</div>
                     </div>
                   </div>
-                  <Link
-                    href={`/${post._id}/edit`}
-                    style={{ color: "inherit", textDecoration: "inherit" }}
-                  >
-                    <span className="material-symbols-outlined">edit</span>
-                  </Link>
+                  <div className={styles.body}>{post.body}</div>
+                  <div className={styles.bottom}>
+                    <div className={styles.comments}>
+                      <span className="material-symbols-outlined">Comment</span>
+                      <div className={styles.comment}>
+                        {`${post.comments.length}`} Comments
+                      </div>
+                    </div>
+                    <Link
+                      href={`/${post._id}/edit`}
+                      style={{ color: "inherit", textDecoration: "inherit" }}
+                    >
+                      <span className="material-symbols-outlined">edit</span>
+                    </Link>
+                  </div>
                 </div>
+              </Link>
+            );
+          })}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            {pageNumber > 0 ? (
+              <div className={styles.button} onClick={moveBack}>
+                {"<"}
               </div>
-            </Link>
-          );
-        })}
-        <div>
-          {pageNumber > 0 ? (
-            <div className={styles.button} onClick={moveBack}>
-              {"<"}
-            </div>
-          ) : (
-            <div></div>
-          )}
-          {posts.length > pageNumber * 10 + 10 ? (
-            <div className={styles.button} onClick={moveFoward}>
-              {">"}
-            </div>
-          ) : (
-            <div></div>
-          )}
+            ) : (
+              <div></div>
+            )}
+            {posts.length > pageNumber * 10 + 10 ? (
+              <div className={styles.button} onClick={moveFoward}>
+                {">"}
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
       </div>
     </div>
