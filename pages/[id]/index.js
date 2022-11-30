@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import styles from "../../styles/Home.module.css";
 
 export default function Post() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/${id}`)
@@ -27,36 +28,37 @@ export default function Post() {
 
       <div>{post.title}</div>
       <div>{post.body}</div>
-      <div> Comments {
-        post && post.comments.map((c, index) => (
+      <div>
+        {" "}
+        Comments{" "}
+        {post &&
+          post.comments.map((c, index) => (
             <div className="mt-4 border-0" key={index}>
-                <div>
-                    
-                        {c.content}
-                    
-                </div>
+              <div>{c.content}</div>
             </div>
-        ))}
-
+          ))}
         <form className={styles.input}>
-        <input
+          <input
             type="text"
-            id = "comment"
+            id="comment"
             placeholder="Enter comment here"
             className={styles.bodyInput}
             value={comment.content}
-            onChange={(event) => setComment({content:event.target.value})}
+            onChange={(event) => setComment({ content: event.target.value })}
           ></input>
 
-          <button className={styles.submitButton}
+          <button
+            className={styles.submitButton}
             onClick={(event) => {
-              comment(event)
-              console.log(addComment)
-            }}> Comment </button>
-          </form>
-        </div>
+              comment(event);
+              console.log(addComment);
+            }}
+          >
+            {" "}
+            Comment{" "}
+          </button>
+        </form>
       </div>
+    </div>
   );
 }
-
-

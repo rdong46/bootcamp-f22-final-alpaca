@@ -137,20 +137,22 @@ export default function Home() {
             </Link>
           );
         })}
-        {pageNumber > 0 ? (
-          <div className={styles.button} onClick={moveBack}>
-            {"<"}
-          </div>
-        ) : (
-          <div></div>
-        )}
-        {posts.length > pageNumber * 10 + 10 ? (
-          <div style={styles.button} onClick={moveFoward}>
-            {">"}
-          </div>
-        ) : (
-          <div></div>
-        )}
+        <div>
+          {pageNumber > 0 ? (
+            <div className={styles.button} onClick={moveBack}>
+              {"<"}
+            </div>
+          ) : (
+            <div></div>
+          )}
+          {posts.length > pageNumber * 10 + 10 ? (
+            <div className={styles.button} onClick={moveFoward}>
+              {">"}
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </div>
       </div>
     </div>
   );

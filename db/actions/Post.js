@@ -9,7 +9,7 @@ import dbConnect from "../dbConnect";
 
 async function findAllPosts() {
   await dbConnect();
-  return await Post.find({}).sort({ date: 1 });
+  return await Post.find({}).sort({ date: -1 });
 }
 
 async function findPostById(id) {
@@ -30,7 +30,7 @@ async function updatePostById(id, change) {
 async function createPost(body) {
   await dbConnect();
   try {
-    return await Post.insert(body);
+    return await Post.create(body);
   } catch (err) {
     console.log(err);
   }
