@@ -97,9 +97,11 @@ export default function Home() {
                     fetch("http://localhost:3000/api/add", {
                       method: "POST",
                       body: JSON.stringify(body),
-                    }).then((response) => {
-                      console.log(response);
-                    });
+                    })
+                      .then((response) => {
+                        return response.json();
+                      })
+                      .then((data) => router.push(`/${data._id}`));
                   }
                 }}
               >

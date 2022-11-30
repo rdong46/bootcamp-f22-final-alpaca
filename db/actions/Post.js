@@ -1,5 +1,6 @@
 import Post from "../models/Post";
 import dbConnect from "../dbConnect";
+import { findCommentsByID } from "./Comment";
 
 /* 
   The following Post model action is given to you.
@@ -29,11 +30,8 @@ async function updatePostById(id, change) {
 
 async function createPost(body) {
   await dbConnect();
-  try {
-    return await Post.create(body);
-  } catch (err) {
-    console.log(err);
-  }
+  const test = await Post.create(body);
+  return test;
 }
 
 export { findAllPosts, findPostById, createPost };
