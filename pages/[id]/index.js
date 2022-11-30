@@ -43,7 +43,7 @@ export default function Post() {
 
           <button className={styles.submitButton}
             onClick={(event) => {
-              post(event)
+              comment(event)
               console.log(addComment)
             }}> Comment </button>
           </form>
