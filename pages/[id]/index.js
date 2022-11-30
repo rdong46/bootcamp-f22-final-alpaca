@@ -20,6 +20,34 @@ export default function Post() {
     <div>
       <div>{post.title}</div>
       <div>{post.body}</div>
-    </div>
+      <div> Comments {
+        post && post.comments.map((c, index) => (
+            <div className="mt-4 border-0" key={index}>
+                <div>
+                    
+                        {c.content}
+                    
+                </div>
+            </div>
+        ))}
+
+        <form className={styles.input}>
+        <input
+            type="text"
+            id = "comment"
+            placeholder="Enter comment here"
+            className={styles.bodyInput}
+            value={comment.content}
+            onChange={(event) => setComment({content:event.target.value})}
+          ></input>
+
+          <button className={styles.submitButton}
+            onClick={(event) => {
+              post(event)
+              console.log(addComment)
+            }}> Comment </button>
+          </form>
+        </div>
+      </div>
   );
 }
