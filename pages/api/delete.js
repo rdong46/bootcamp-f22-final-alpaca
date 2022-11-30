@@ -8,4 +8,5 @@ async function deletePost(req, res) {
   deletePostById(req.body);
 }
 
+
 export default handler;

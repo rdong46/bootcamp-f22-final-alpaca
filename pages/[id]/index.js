@@ -35,6 +35,7 @@ export default function Post() {
           post.comments.map((c, index) => (
             <div className="mt-4 border-0" key={index}>
               <div>{c.content}</div>
+
             </div>
           ))}
         <form className={styles.input}>
