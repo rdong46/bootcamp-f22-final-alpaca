@@ -19,13 +19,13 @@ async function findPostById(id) {
 }
 
 async function deletePostById(id) {
-  await dbConenct();
+  await dbConnect();
   return await Post.findByIdAndDelete(id);
 }
 
 async function updatePostById(id, change) {
   await dbConnect();
-  return await Post.findByIdAndUpdate();
+  return await Post.findByIdAndUpdate(id, change);
 }
 
 async function createPost(body) {
@@ -34,4 +34,4 @@ async function createPost(body) {
   return test;
 }
 
-export { findAllPosts, findPostById, createPost };
+export { findAllPosts, findPostById, createPost, deletePostById, updatePostById};
