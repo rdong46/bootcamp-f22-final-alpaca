@@ -11,7 +11,10 @@ export default function Edit() {
   const [newBody, setNewBody] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/${id}`)
+    fetch(`http://localhost:3000/api/get`, {
+      method: "POST",
+      body: id,
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -19,12 +22,13 @@ export default function Edit() {
       });
   }, []);
 
-  return <div>
-    <div className={styles.posts}>
+  return (
+    <div>
+      <div className={styles.posts}>
         <div>{post.title}</div>
         <div>{post.body}</div>
-    </div>
-    
+      </div>
+
       {/* { <form className={styles.input}>
                 <input
                   type="text"
@@ -51,23 +55,30 @@ export default function Edit() {
 
               </form> } */}
       <div>
-      <button
+        <button
           onClick={(event) => {
-            fetch("http://localhost:3000/api/edit", {method: "PUT", body: {id: id, change: ""}});
+            fetch("http://localhost:3000/api/edit", {
+              method: "PUT",
+              body: { id: id, change: "" },
+            });
           }}
-          >
-            Edit
+        >
+          Edit
         </button>
       </div>
 
       <div>
-      <button
+        <button
           onClick={(event) => {
-            fetch("http://localhost:3000/api/delete", {method: "DELETE", body: id});
+            fetch("http://localhost:3000/api/delete", {
+              method: "DELETE",
+              body: id,
+            });
           }}
-          >
-            Delete
+        >
+          Delete
         </button>
       </div>
-  </div>;
+    </div>
+  );
 }
