@@ -9,11 +9,14 @@ export default function Home() {
   const [pageNumber, setPageNumber] = useState(0);
   const [currentPosts, setCurrentPosts] = useState([]);
   const [addPost, setAddPost] = useState(false);
+  const [newTitle, setNewTitle] = useState("");
+  const [newBody, setNewBody] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/api/example")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setPosts(data);
         setCurrentPosts(data.slice(pageNumber * 10, pageNumber * 10 + 10));
       });
@@ -32,19 +35,6 @@ export default function Home() {
       posts.slice((pageNumber + 1) * 10, (pageNumber + 1) * 10 + 10)
     );
   }
-  
-  function post() {
-    console.log(document.getElementById("title").value);
-    if (document.getElementById("title").value == ""
-        && document.getElementById("text").value == "") {
-        console.log("NOTHING")
-        setAddPost(true);
-        event.preventDefault();
-    } else {
-        setAddPost(false);
-    }
-    
-  }
 
   return (
     <div>
@@ -55,7 +45,6 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.posts}>
-
         {!addPost ? (
           <div className={styles.submit}>
             <Image src={temp} alt="logo" width={36} height="auto" />
@@ -71,28 +60,48 @@ export default function Home() {
           </div>
         ) : (
           <div className={styles.submit}>
-            <form className={styles.input}>
-              <input
-                type="text"
-                id="title"
-                placeholder="Title"
-                className={styles.titleInput}
-              ></input>
-              <textarea
-                id="text"
-                placeholder="Text(optional)"
-                className={styles.bodyInput}
-              ></textarea>
+            <div className={styles.input}>
+              <form className={styles.input}>
+                <input
+                  type="text"
+                  id="title"
+                  placeholder="Title"
+                  className={styles.titleInput}
+                  onChange={(e) => {
+                    setNewTitle(e.target.value);
+                    console.log(newTitle);
+                  }}
+                ></input>
+                <textarea
+                  id="text"
+                  placeholder="Text(optional)"
+                  className={styles.bodyInput}
+                  onChange={(e) => {
+                    setNewBody(e.target.value);
+                    console.log(newBody);
+                  }}
+                ></textarea>
+              </form>
               <button
                 className={styles.submitButton}
-                onClick={(event) => {
-                  post(event)
-                  console.log(addPost)
+                onClick={() => {
+                  if (!newBody == "" && !newTitle == "") {
+                    const body = {
+                      title: newTitle,
+                      body: newBody,
+                      comments: [],
+                    };
+                    fetch("http://localhost:3000/api/add", {
+                      method: "POST",
+                      body: JSON.stringify(body),
+                    });
+                    setAddPost(false);
+                  }
                 }}
               >
                 Post
               </button>
-            </form>
+            </div>
           </div>
         )}
         {currentPosts.map((post, index) => {
