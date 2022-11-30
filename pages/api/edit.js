@@ -5,7 +5,8 @@ function handler(req, res) {
 }
 
 async function updatePost(req, res) {
-  updatePostById(req.body.id, req.body.change);
+  const post = updatePostById(JSON.parse(req.body));
+  res.status(200).json(post);
 }
 
 export default handler;

@@ -34,9 +34,14 @@ async function deletePostById(id) {
   return deleted;
 }
 
-async function updatePostById(id, change) {
+async function updatePostById(body) {
   await dbConnect();
-  return await Post.findByIdAndUpdate(id, change);
+  return await Post.findByIdAndUpdate(body.id, body.change);
+}
+
+async function updatePostWithComments(id, body) {
+  await dbConnect();
+  return await Post.findByIdAndUpdate(id, body);
 }
 
 async function createPost(body) {
@@ -51,4 +56,5 @@ export {
   createPost,
   deletePostById,
   updatePostById,
+  updatePostWithComments,
 };

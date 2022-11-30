@@ -19,6 +19,8 @@ export default function Edit() {
       .then((data) => {
         console.log(data);
         setPost(data);
+        setNewTitle(data.title);
+        setNewBody(data.body);
       });
   }, []);
 
@@ -30,7 +32,7 @@ export default function Edit() {
           id="title"
           placeholder="Title"
           className={styles.titleInput}
-          value={post.title}
+          value={newTitle}
           onChange={(e) => {
             setNewTitle(e.target.value);
             console.log(newTitle);
@@ -40,7 +42,7 @@ export default function Edit() {
           id="text"
           placeholder="test"
           className={styles.bodyInput}
-          value={post.body}
+          value={newBody}
           onChange={(e) => {
             setNewBody(e.target.value);
             console.log(newBody);
@@ -49,11 +51,28 @@ export default function Edit() {
       </form>
       <div>
         <button
-          onClick={(event) => {
-            fetch("http://localhost:3000/api/edit", {
-              method: "PUT",
-              body: { id: id, change: "" },
-            });
+          onClick={() => {
+            const body = {
+              id: id,
+              change: {
+                title: newTitle,
+                body: newBody,
+                comments: post.comments,
+                time: post.time,
+              },
+            };
+            if (
+              (newTitle !== post.title && newTitle !== "") ||
+              (newBody !== post.body && newBody !== "")
+            ) {
+              fetch("http://localhost:3000/api/edit", {
+                method: "PUT",
+                body: JSON.stringify(body),
+              }).then(() => {
+                router.push(`/${id}`);
+                console.log("hello");
+              });
+            }
           }}
         >
           Edit
@@ -62,15 +81,25 @@ export default function Edit() {
 
       <div>
         <button
-          onClick={(event) => {
+          onClick={() => {
             fetch("http://localhost:3000/api/delete", {
               method: "DELETE",
               body: id,
+            }).then(() => {
+              router.push("../..");
             });
-            router.push("../..");
           }}
         >
           Delete
+        </button>
+      </div>
+      <div>
+        <button
+          onClick={() => {
+            router.push(`/${id}`);
+          }}
+        >
+          Cancel
         </button>
       </div>
     </div>

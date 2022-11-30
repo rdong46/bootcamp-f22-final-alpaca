@@ -38,14 +38,24 @@ export default function Post() {
           </div>
         </div>
         <div className={styles.body}>{post.body}</div>
-        <button
-          className={styles.submitButton}
-          onClick={() => {
-            router.push(`/${post._id}/edit`);
-          }}
-        >
-          Edit
-        </button>
+        <div>
+          <button
+            className={styles.submitButton}
+            onClick={() => {
+              router.push(`/${post._id}/edit`);
+            }}
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => {
+              router.push(`/..`);
+            }}
+          >
+            Home Page
+          </button>
+        </div>
+
         <div className={styles.comments}>
           <span className="material-symbols-outlined">Comment</span>
           <div className={styles.comment}>

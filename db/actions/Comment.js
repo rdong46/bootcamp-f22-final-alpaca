@@ -1,6 +1,6 @@
 import Comment from "../models/Comment";
 import dbConnect from "../dbConnect";
-import { findPostById, updatePostById } from "./Post";
+import { findPostById, updatePostWithComments } from "./Post";
 
 async function findCommentsByPost(post) {
   await dbConnect();
@@ -15,7 +15,7 @@ async function addCommentByPost(body) {
   const post = await findPostById(body.id);
   const comment = await Comment.create(body.content);
   post.comments.push(comment);
-  await updatePostById(body.id, post);
+  await updatePostWithComments(body.id, post);
   return comment;
 }
 
