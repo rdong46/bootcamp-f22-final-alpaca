@@ -1,6 +1,6 @@
 import Post from "../models/Post";
 import dbConnect from "../dbConnect";
-import { findCommentsByID } from "./Comment";
+import { deleteComments, findCommentsByPost } from "./Comment";
 
 /* 
   The following Post model action is given to you.
@@ -15,12 +15,23 @@ async function findAllPosts() {
 
 async function findPostById(id) {
   await dbConnect();
-  return await Post.findById(id);
+  const test = await Post.findOne({ _id: id });
+  const comments = await findCommentsByPost(test);
+  const output = { _id: "", title: "", body: "", comments: [], date: "" };
+  output._id = test._id;
+  output.title = test.title;
+  output.body = test.body;
+  output.comments = comments;
+  output.date = test.date;
+  console.log(output);
+  return output;
 }
 
 async function deletePostById(id) {
   await dbConnect();
-  return await Post.findByIdAndDelete(id);
+  let deleted = await Post.findByIdAndDelete(id);
+  await deleteComments(deleted);
+  return deleted;
 }
 
 async function updatePostById(id, change) {
@@ -34,4 +45,10 @@ async function createPost(body) {
   return test;
 }
 
-export { findAllPosts, findPostById, createPost, deletePostById, updatePostById};
+export {
+  findAllPosts,
+  findPostById,
+  createPost,
+  deletePostById,
+  updatePostById,
+};

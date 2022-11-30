@@ -13,9 +13,10 @@ export default function Post() {
     comments: [],
     date: "",
   });
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/comments`, {
+    fetch(`http://localhost:3000/api/get`, {
       method: "POST",
       body: id,
     })
@@ -37,6 +38,14 @@ export default function Post() {
           </div>
         </div>
         <div className={styles.body}>{post.body}</div>
+        <button
+          className={styles.submitButton}
+          onClick={() => {
+            router.push(`/${post._id}/edit`);
+          }}
+        >
+          Edit
+        </button>
         <div className={styles.comments}>
           <span className="material-symbols-outlined">Comment</span>
           <div className={styles.comment}>
@@ -50,14 +59,28 @@ export default function Post() {
               id="comment"
               placeholder="Enter comment here"
               className={styles.bodyInput}
-              onChange={(event) => setComment({ content: event.target.value })}
+              value={comment}
+              onChange={(event) => setComment(event.target.value)}
             ></input>
           </form>
           <button
             className={styles.submitButton}
-            onClick={(event) => {
-              comment(event);
-              console.log(addComment);
+            onClick={() => {
+              if (comment !== "") {
+                let body = { id: id, content: { body: comment } };
+                fetch("http://localhost:3000/api/addComment", {
+                  method: "POST",
+                  body: JSON.stringify(body),
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    let copy = { ...post };
+                    copy.comments.unshift({ body: data.body, date: data.date });
+                    setPost(copy);
+                    console.log(copy);
+                  });
+                setComment("");
+              }
             }}
           >
             Comment

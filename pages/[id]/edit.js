@@ -24,36 +24,29 @@ export default function Edit() {
 
   return (
     <div>
-      <div className={styles.posts}>
-        <div>{post.title}</div>
-        <div>{post.body}</div>
-      </div>
-
-      {/* { <form className={styles.input}>
-                <input
-                  type="text"
-                  id="title"
-                  placeholder="Title"
-                  className={styles.titleInput}
-                  onChange={(e) => {
-                    setNewTitle(e.target.value);
-                    console.log(newTitle);
-                  }}
-                >
-                </input>
-                <textarea
-                  id="text"
-                  placeholder="test"
-                  className={styles.bodyInput}
-                  onChange={(e) => {
-                    setNewBody(e.target.value);
-                    console.log(newBody);
-                  }}
-                >
-                  
-                </textarea>
-
-              </form> } */}
+      <form className={styles.input}>
+        <input
+          type="text"
+          id="title"
+          placeholder="Title"
+          className={styles.titleInput}
+          value={post.title}
+          onChange={(e) => {
+            setNewTitle(e.target.value);
+            console.log(newTitle);
+          }}
+        ></input>
+        <textarea
+          id="text"
+          placeholder="test"
+          className={styles.bodyInput}
+          value={post.body}
+          onChange={(e) => {
+            setNewBody(e.target.value);
+            console.log(newBody);
+          }}
+        ></textarea>
+      </form>
       <div>
         <button
           onClick={(event) => {
@@ -74,6 +67,7 @@ export default function Edit() {
               method: "DELETE",
               body: id,
             });
+            router.push("../..");
           }}
         >
           Delete
