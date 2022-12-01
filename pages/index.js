@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import temp from "../public/temp.jpg";
+import temp from "../public/download.jpg";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 
@@ -23,6 +23,7 @@ export default function Home(props) {
     setCurrentPosts(
       posts.slice((pageNumber - 1) * 10, (pageNumber - 1) * 10 + 10)
     );
+    setAddPost(false);
   }
 
   function moveFoward() {
@@ -30,6 +31,7 @@ export default function Home(props) {
     setCurrentPosts(
       posts.slice((pageNumber + 1) * 10, (pageNumber + 1) * 10 + 10)
     );
+    setAddPost(false);
   }
 
   return (
@@ -37,7 +39,7 @@ export default function Home(props) {
       <div className={styles.header}>
         <div className={styles.logo}>
           <Image src={temp} alt="logo" width={72} height="auto" />
-          <div>Temporary App Name</div>
+          <div>ALPACA</div>
         </div>
       </div>
       <div className={styles.posts}>
@@ -69,7 +71,7 @@ export default function Home(props) {
                 ></input>
                 <textarea
                   id="text"
-                  placeholder="Text(optional)"
+                  placeholder="Text"
                   className={styles.bodyInput}
                   onChange={(e) => {
                     setNewBody(e.target.value);

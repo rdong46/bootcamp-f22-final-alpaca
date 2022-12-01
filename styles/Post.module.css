@@ -20,6 +20,7 @@
   padding: 8px;
   display: flex;
   flex-direction: column;
+  border-radius: 7px;
 }
 
 .first {

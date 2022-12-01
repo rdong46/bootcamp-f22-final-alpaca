@@ -16,7 +16,7 @@
   align-items: center;
 }
 
-.main{
+.main {
   background-color: slategray;
   height: 100%;
 }
@@ -27,9 +27,8 @@
   background-color: white;
   width: 734px;
   padding: 8px;
+  border-radius: 7px;
 }
-
-
 
 .inputFullLen {
   display: flex;
@@ -39,7 +38,6 @@
   align-items: center;
   margin-left: 40px;
 }
-
 
 .submit {
   display: flex;
@@ -77,12 +75,9 @@
   padding-bottom: 10px;
 }
 
-
-
 .body {
   font-size: 14px;
 }
-
 
 .comments {
   display: flex;
@@ -90,8 +85,7 @@
   padding-top: 10px;
 }
 
-
-.deleteButton{
+.deleteButton {
   border: 1px black solid;
   width: 70px;
   height: 40px;
@@ -101,14 +95,12 @@
   justify-content: center;
   background-color: white;
   color: red;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   margin: 10px;
-
 }
 
-
-.editButton{
+.editButton {
   border: 1px black solid;
   width: 60px;
   height: 40px;
@@ -118,7 +110,7 @@
   justify-content: center;
   background-color: white;
   color: darkgoldenrod;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   margin: 10px;
 }
@@ -132,17 +124,13 @@
   font-size: 12px;
 }
 
-
-
 .buttons {
-  display: flex; 
+  display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin-top: 30px;
   width: 78%;
-
 }
-
 
 .head {
   display: flex;
@@ -150,7 +138,7 @@
   justify-content: center;
   background-color: slategray;
   color: white;
-  font-size:x-large;
+  font-size: x-large;
   font-weight: bold;
   padding-top: 20px;
   margin-top: 200px;
@@ -164,9 +152,6 @@
 .comment {
   font-size: 15px;
 }
-
-
-
 
 .button {
   border: 1px black solid;
@@ -186,11 +171,6 @@
   border-radius: 25px;
   margin-bottom: 20px;
 }
-
-
-
-
-
 
 .bottom {
   display: flex;
@@ -218,7 +198,7 @@
 
 .titleInput {
   width: 100%;
-  border-radius: 2px;
+  border-radius: 5px;
   margin-top: 20px;
 }
 
@@ -227,7 +207,6 @@
   width: 100%;
   border-radius: 2px;
 }
-
 
 .title {
   font-size: 17px;
@@ -295,7 +274,7 @@
   border-radius: 2px;
 }
 
-.cancelButton{
+.cancelButton {
   border: 1px black solid;
   width: 80px;
   height: 40px;
@@ -305,11 +284,7 @@
   justify-content: center;
   background-color: white;
   color: slategray;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   margin: 10px;
-
 }
-
-
-
