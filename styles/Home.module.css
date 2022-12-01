@@ -29,6 +29,18 @@
   padding: 8px;
 }
 
+
+
+.inputFullLen {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  gap: 10px;
+  align-items: center;
+  margin-left: 40px;
+}
+
+
 .submit {
   display: flex;
   align-items: center;
@@ -65,82 +77,18 @@
   padding-bottom: 10px;
 }
 
-.head {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: slategray;
-  color: white;
-  font-size:x-large;
-  font-weight: bold;
-  padding-top: 20px;
-  margin-top: 200px;
-  margin-bottom: 70px;
 
-  padding-bottom: 20px;
-  margin-right: 600px;
-  margin-left: 500px;
-}
 
 .body {
   font-size: 14px;
 }
+
 
 .comments {
   display: flex;
   gap: 5px;
   padding-top: 10px;
 }
-
-.first {
-  display: flex;
-  justify-content: space-between;
-}
-
-.date {
-  font-size: 12px;
-}
-
-.buttons {
-  display: flex; 
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-top: 30px;
-  width: 78%;
-
-}
-
-.comment {
-  font-size: 15px;
-}
-
-.cancelButton{
-  border: 1px black solid;
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  color: slategray;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-  margin: 10px;
-
-}
-
-.button {
-  border: 1px black solid;
-  width: 35px;
-  height: 20px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-}
-
 
 
 .deleteButton{
@@ -175,6 +123,75 @@
   margin: 10px;
 }
 
+.first {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  font-size: 12px;
+}
+
+
+
+.buttons {
+  display: flex; 
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 30px;
+  width: 78%;
+
+}
+
+
+.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: slategray;
+  color: white;
+  font-size:x-large;
+  font-weight: bold;
+  padding-top: 20px;
+  margin-top: 200px;
+  margin-bottom: 70px;
+
+  padding-bottom: 20px;
+  margin-right: 600px;
+  margin-left: 500px;
+}
+
+.comment {
+  font-size: 15px;
+}
+
+
+
+
+.button {
+  border: 1px black solid;
+  width: 35px;
+  height: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.submitButton {
+  width: 10%;
+  align-self: flex-end;
+  height: 30px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+
 .bottom {
   display: flex;
   align-items: center;
@@ -186,6 +203,16 @@
   flex-direction: column;
   width: 90%;
   gap: 10px;
+  align-items: center;
+}
+
+.bodyInputFullLen {
+  height: 100px;
+  width: 70%;
+  border-radius: 2px;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -201,15 +228,6 @@
   border-radius: 2px;
 }
 
-.bodyInputFullLen {
-  height: 100px;
-  width: 70%;
-  border-radius: 2px;
-  margin-left: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .title {
   font-size: 17px;
@@ -277,22 +295,20 @@
   border-radius: 2px;
 }
 
-.submitButton {
-  width: 10%;
-  align-self: flex-end;
-  height: 30px;
-  border-radius: 25px;
-  margin-bottom: 20px;
-}
-
-
-.inputFullLen {
+.cancelButton{
+  border: 1px black solid;
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
   display: flex;
-  flex-direction: column;
-  width: 70%;
-  gap: 10px;
   align-items: center;
-  margin-left: 40px;
+  justify-content: center;
+  background-color: white;
+  color: slategray;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin: 10px;
+
 }
 
 
