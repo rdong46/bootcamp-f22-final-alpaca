@@ -8,6 +8,7 @@ const Post = (props) => {
   const router = useRouter();
   const { id } = router.query;
   const { post } = props;
+  const [postData, setPostData] = useState(post);
   const [comment, setComment] = useState("");
 
   return (
@@ -23,7 +24,7 @@ const Post = (props) => {
         </button>
       </div>
 
-      <PostPage info={post} />
+      <PostPage info={postData} />
 
       <div className={styles.box}>
         <div className={styles.form}>
@@ -38,64 +39,6 @@ const Post = (props) => {
           </form>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
         <button
           className={styles.indivPageButton}
           onClick={() => {
@@ -109,7 +52,7 @@ const Post = (props) => {
                 .then((data) => {
                   let copy = { ...post };
                   copy.comments.unshift({ body: data.body, date: data.date });
-                  setPost(copy);
+                  setPostData(copy);
                 });
               setComment("");
             }
@@ -122,11 +65,11 @@ const Post = (props) => {
             <span className="material-symbols-outlined">Comment</span>
           </div>
           <div className={styles.comment}>
-            {`${post.comments.length}`} Comments
+            {`${postData.comments.length}`} Comments
           </div>
         </div>
-        {post.comments.length > 0 ? (
-          post.comments.map((c, index) => (
+        {postData.comments.length > 0 ? (
+          postData.comments.map((c, index) => (
             <div key={index}>
               <Comment info={c} />
             </div>

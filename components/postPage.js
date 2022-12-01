@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "../styles/Post.module.css";
+import { useRouter } from "next/router";
 
 const PostPage = (props) => {
   const { info } = props;
+  const router = useRouter();
   return (
     <div className={styles.box}>
       <div className={styles.first}>
@@ -17,7 +19,7 @@ const PostPage = (props) => {
         <button
           className={styles.indivPageButton}
           onClick={() => {
-            router.push(`/${post._id}/edit`);
+            router.push(`/${info._id}/edit`);
           }}
         >
           Edit Post
