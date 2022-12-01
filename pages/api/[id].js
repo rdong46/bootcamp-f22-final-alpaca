@@ -5,7 +5,8 @@ function handler(req, res) {
 }
 
 async function getById(req, res) {
-  const post = await findPostById(req.body);
+  const { id } = req.query;
+  const post = await findPostById(id);
   res.status(200).json(post);
 }
 

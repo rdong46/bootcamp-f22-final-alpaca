@@ -11,13 +11,9 @@ export default function Edit() {
   const [newBody, setNewBody] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/get`, {
-      method: "POST",
-      body: id,
-    })
+    fetch(`http://localhost:3000/api/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPost(data);
         setNewTitle(data.title);
         setNewBody(data.body);
@@ -25,8 +21,8 @@ export default function Edit() {
   }, []);
 
   return (
-    <div className ={styles.main}>
-      <h1 className ={styles.head}> Edit Your Post </h1>
+    <div className={styles.main}>
+      <h1 className={styles.head}> Edit Your Post </h1>
       <form className={styles.input}>
         <input
           type="text"
@@ -36,7 +32,6 @@ export default function Edit() {
           value={newTitle}
           onChange={(e) => {
             setNewTitle(e.target.value);
-            console.log(newTitle);
           }}
         ></input>
         <textarea
@@ -46,67 +41,65 @@ export default function Edit() {
           value={newBody}
           onChange={(e) => {
             setNewBody(e.target.value);
-            console.log(newBody);
           }}
         ></textarea>
       </form>
-      <div className = {styles.buttons}>
-      <div>
-        <button
-          onClick={() => {
-            const body = {
-              id: id,
-              change: {
-                title: newTitle,
-                body: newBody,
-                comments: post.comments,
-                time: post.time,
-              },
-            };
-            if (
-              (newTitle !== post.title && newTitle !== "") ||
-              (newBody !== post.body && newBody !== "")
-            ) {
-              fetch("http://localhost:3000/api/edit", {
-                method: "PUT",
-                body: JSON.stringify(body),
-              }).then(() => {
-                router.push(`/${id}`);
-                console.log("hello");
-              });
-            }
-          }}
-          className ={styles.editButton}
-        >
-           ✏️ Edit
-        </button>
-      </div>
+      <div className={styles.buttons}>
+        <div>
+          <button
+            onClick={() => {
+              const body = {
+                id: id,
+                change: {
+                  title: newTitle,
+                  body: newBody,
+                  comments: post.comments,
+                  time: post.time,
+                },
+              };
+              if (
+                (newTitle !== post.title && newTitle !== "") ||
+                (newBody !== post.body && newBody !== "")
+              ) {
+                fetch("http://localhost:3000/api/edit", {
+                  method: "PUT",
+                  body: JSON.stringify(body),
+                }).then(() => {
+                  router.push(`/${id}`);
+                });
+              }
+            }}
+            className={styles.editButton}
+          >
+            ✏️ Edit
+          </button>
+        </div>
 
-      <div>
-        <button
-          onClick={() => {
-            fetch("http://localhost:3000/api/delete", {
-              method: "DELETE",
-              body: id,
-            }).then(() => {
-              router.push("../..");
-            });
-          }}
-          className ={styles.deleteButton}
-        >
-          ❌ Delete 
-        </button>
-      </div>
-      <div>
-        <button
-          onClick={() => {
-            router.push(`/${id}`);
-          }}
-          className ={styles.cancelButton}
-        >
-           ⬅️ Cancel
-        </button>
-      </div>
+        <div>
+          <button
+            onClick={() => {
+              fetch("http://localhost:3000/api/delete", {
+                method: "DELETE",
+                body: id,
+              }).then(() => {
+                router.push("../..");
+              });
+            }}
+            className={styles.deleteButton}
+          >
+            ❌ Delete
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              router.push(`/${id}`);
+            }}
+            className={styles.cancelButton}
+          >
+            ⬅️ Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

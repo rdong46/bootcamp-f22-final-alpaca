@@ -6,7 +6,6 @@ function handler(req, res) {
 
 async function addPost(req, res) {
   const newPost = await createPost(JSON.parse(req.body));
-  console.log(newPost);
   res.status(200).json(newPost);
 }
 

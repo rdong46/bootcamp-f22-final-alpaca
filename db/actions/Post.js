@@ -15,7 +15,7 @@ async function findAllPosts() {
 
 async function findPostById(id) {
   await dbConnect();
-  const test = await Post.findOne({ _id: id });
+  const test = await Post.findById(id);
   const comments = await findCommentsByPost(test);
   const output = { _id: "", title: "", body: "", comments: [], date: "" };
   output._id = test._id;
@@ -23,7 +23,6 @@ async function findPostById(id) {
   output.body = test.body;
   output.comments = comments;
   output.date = test.date;
-  console.log(output);
   return output;
 }
 

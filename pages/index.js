@@ -5,8 +5,8 @@ import temp from "../public/temp.jpg";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 
-export default function Home() {
-  const [posts, setPosts] = useState([]);
+export default function Home(props) {
+  const { posts } = props;
   const [pageNumber, setPageNumber] = useState(0);
   const [currentPosts, setCurrentPosts] = useState([]);
   const [addPost, setAddPost] = useState(false);
@@ -15,13 +15,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/example")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setPosts(data);
-        setCurrentPosts(data.slice(pageNumber * 10, pageNumber * 10 + 10));
-      });
+    setCurrentPosts(posts.slice(pageNumber * 10, pageNumber * 10 + 10));
   }, []);
 
   function moveBack() {
@@ -71,7 +65,6 @@ export default function Home() {
                   className={styles.titleInput}
                   onChange={(e) => {
                     setNewTitle(e.target.value);
-                    console.log(newTitle);
                   }}
                 ></input>
                 <textarea
@@ -80,7 +73,6 @@ export default function Home() {
                   className={styles.bodyInput}
                   onChange={(e) => {
                     setNewBody(e.target.value);
-                    console.log(newBody);
                   }}
                 ></textarea>
               </form>
@@ -169,4 +161,14 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const response = await fetch("http://localhost:3000/api/example");
+  const data = await response.json();
+  return {
+    props: {
+      posts: data,
+    },
+  };
 }
