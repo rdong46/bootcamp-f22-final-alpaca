@@ -29,6 +29,16 @@ export default function Post() {
 
   return (
     <div className={styles.center}>
+        <div >
+         <button
+            className={styles.homeButton}
+            onClick={() => {
+              router.push(`/..`);
+            }}
+          >
+            Home Page
+        </button>
+    </div>
       <div className={styles.box}>
         <div className={styles.first}>
           <div className={styles.title}>{post.title}</div>
@@ -39,42 +49,54 @@ export default function Post() {
         </div>
         <div className={styles.body}>{post.body}</div>
         <div>
-          <button
-            className={styles.submitButton}
+          <button 
+            className={styles.indivPageButton}
             onClick={() => {
               router.push(`/${post._id}/edit`);
             }}
           >
-            Edit
-          </button>
-          <button
-            onClick={() => {
-              router.push(`/..`);
-            }}
-          >
-            Home Page
+            Edit Post
           </button>
         </div>
+      </div>
 
+      <div className={styles.box}>
         <div className={styles.comments}>
+          <div className={styles.commentsLogo}>
           <span className="material-symbols-outlined">Comment</span>
+          </div>
           <div className={styles.comment}>
             {`${post.comments.length}`} Comments
           </div>
         </div>
         <div>
-          <form className={styles.input}>
-            <input
-              type="text"
-              id="comment"
-              placeholder="Enter comment here"
-              className={styles.bodyInput}
-              value={comment}
-              onChange={(event) => setComment(event.target.value)}
-            ></input>
+        </div>
+        {post.comments.length > 0 ? (
+          post.comments.map((c, index) => (
+            <div key={index}>
+              <div>{c.body}</div>
+              <div>{c.date}</div>
+            </div>
+          ))
+        ) : (
+          <div></div>
+        )}
+
+          <div className={styles.form}>
+            <form className={styles.input}>
+            <textarea
+                  id="text"
+                  placeholder="Enter new comment here"
+                  className={styles.bodyInput}
+                  value={comment}
+              
+                  onChange={(event) => setComment(event.target.value)}
+              ></textarea>
           </form>
+          </div>
+
           <button
-            className={styles.submitButton}
+            className={styles.indivPageButton}
             onClick={() => {
               if (comment !== "") {
                 let body = { id: id, content: { body: comment } };
@@ -95,18 +117,7 @@ export default function Post() {
           >
             Comment
           </button>
-        </div>
-        {post.comments.length > 0 ? (
-          post.comments.map((c, index) => (
-            <div key={index}>
-              <div>{c.body}</div>
-              <div>{c.date}</div>
-            </div>
-          ))
-        ) : (
-          <div></div>
-        )}
-      </div>
+    </div>
     </div>
   );
 }
