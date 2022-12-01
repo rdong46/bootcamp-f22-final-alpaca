@@ -45,6 +45,32 @@ export default function Edit() {
         ></textarea>
       </form>
       <div className={styles.buttons}>
+      <div>
+          <button
+            onClick={() => {
+              router.push(`/${id}`);
+            }}
+            className={styles.cancelButton}
+          >
+            ⬅️ Cancel
+          </button>
+        </div>
+        
+        <div>
+          <button
+            onClick={() => {
+              fetch("http://localhost:3000/api/delete", {
+                method: "DELETE",
+                body: id,
+              }).then(() => {
+                router.push("../..");
+              });
+            }}
+            className={styles.deleteButton}
+          >
+            ❌ Delete
+          </button>
+        </div>
         <div>
           <button
             onClick={() => {
@@ -72,32 +98,6 @@ export default function Edit() {
             className={styles.editButton}
           >
             ✏️ Edit
-          </button>
-        </div>
-
-        <div>
-          <button
-            onClick={() => {
-              fetch("http://localhost:3000/api/delete", {
-                method: "DELETE",
-                body: id,
-              }).then(() => {
-                router.push("../..");
-              });
-            }}
-            className={styles.deleteButton}
-          >
-            ❌ Delete
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => {
-              router.push(`/${id}`);
-            }}
-            className={styles.cancelButton}
-          >
-            ⬅️ Cancel
           </button>
         </div>
       </div>
