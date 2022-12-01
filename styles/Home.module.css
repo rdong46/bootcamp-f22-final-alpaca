@@ -193,3 +193,100 @@
   border-radius: 25px;
   margin-bottom: 20px;
 }
+
+.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: slategray;
+  color: white;
+  font-size:x-large;
+  font-weight: bold;
+  padding-top: 20px;
+  margin-top: 200px;
+  margin-bottom: 70px;
+
+  padding-bottom: 20px;
+  margin-right: 600px;
+  margin-left: 500px;
+}
+
+.inputFullLen {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  gap: 10px;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.editButton{
+  border: 1px black solid;
+  width: 60px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: darkgoldenrod;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.deleteButton{
+  border: 1px black solid;
+  width: 70px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: red;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin: 10px;
+
+}
+
+.cancelButton{
+  border: 1px black solid;
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: slategray;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin: 10px;
+
+}
+
+.buttons {
+  display: flex; 
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 30px;
+  width: 78%;
+
+}
+
+.bodyInputFullLen {
+  height: 100px;
+  width: 70%;
+  border-radius: 2px;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main{
+  background-color: slategray;
+  height: 100%;
+}

@@ -25,13 +25,14 @@ export default function Edit() {
   }, []);
 
   return (
-    <div>
+    <div className ={styles.main}>
+      <h1 className ={styles.head}> Edit Your Post </h1>
       <form className={styles.input}>
         <input
           type="text"
           id="title"
           placeholder="Title"
-          className={styles.titleInput}
+          className={styles.inputFullLen}
           value={newTitle}
           onChange={(e) => {
             setNewTitle(e.target.value);
@@ -41,7 +42,7 @@ export default function Edit() {
         <textarea
           id="text"
           placeholder="test"
-          className={styles.bodyInput}
+          className={styles.bodyInputFullLen}
           value={newBody}
           onChange={(e) => {
             setNewBody(e.target.value);
@@ -49,6 +50,7 @@ export default function Edit() {
           }}
         ></textarea>
       </form>
+      <div className = {styles.buttons}>
       <div>
         <button
           onClick={() => {
@@ -74,8 +76,9 @@ export default function Edit() {
               });
             }
           }}
+          className ={styles.editButton}
         >
-          Edit
+           ✏️ Edit
         </button>
       </div>
 
@@ -89,8 +92,9 @@ export default function Edit() {
               router.push("../..");
             });
           }}
+          className ={styles.deleteButton}
         >
-          Delete
+          ❌ Delete 
         </button>
       </div>
       <div>
@@ -98,9 +102,11 @@ export default function Edit() {
           onClick={() => {
             router.push(`/${id}`);
           }}
+          className ={styles.cancelButton}
         >
-          Cancel
+           ⬅️ Cancel
         </button>
+      </div>
       </div>
     </div>
   );
