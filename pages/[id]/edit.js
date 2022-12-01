@@ -2,23 +2,17 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../../styles/Home.module.css";
 
-export default function Edit() {
+const Edit = (props) => {
   const router = useRouter();
   const { id } = router.query;
 
-  const [post, setPost] = useState([]);
-  const [newTitle, setNewTitle] = useState("");
-  const [newBody, setNewBody] = useState("");
+  const { post } = props;
+  const [newTitle, setNewTitle] = useState(post.title);
+  const [newBody, setNewBody] = useState(post.body);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setPost(data);
-        setNewTitle(data.title);
-        setNewBody(data.body);
-      });
-  }, []);
+    console.log(post);
+  });
 
   return (
     <div className={styles.main}>
@@ -38,7 +32,7 @@ export default function Edit() {
 
         <textarea
           id="text"
-          placeholder="test"
+          placeholder="Text"
           className={styles.bodyInputFullLen}
           value={newBody}
           onChange={(e) => {
@@ -105,4 +99,26 @@ export default function Edit() {
       </div>
     </div>
   );
+};
+
+export async function getStaticPaths() {
+  const response = await fetch("http://localhost:3000/api/example");
+  const data = await response.json();
+  return {
+    paths: data.map((post) => ({ params: { id: post._id } })),
+    fallback: false,
+  };
 }
+
+export async function getStaticProps(context) {
+  const { id } = context.params;
+  const response = await fetch(`http://localhost:3000/api/${id}`);
+  const data = await response.json();
+  return {
+    props: {
+      post: data,
+    },
+  };
+}
+
+export default Edit;
