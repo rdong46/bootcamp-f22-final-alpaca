@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Comment from "../../components/comment";
+import PostPage from "../../components/postPage";
 import styles from "../../styles/Post.module.css";
 
 const Post = (props) => {
@@ -20,47 +22,10 @@ const Post = (props) => {
           Home Page
         </button>
       </div>
-      <div className={styles.box}>
-        <div className={styles.first}>
-          <div className={styles.title}>{post.title}</div>
-          <div className={styles.date}>
-            <div>{post.date.substr(0, 10)}</div>
-            <div>{post.date.substr(11, 8)}</div>
-          </div>
-        </div>
-        <div className={styles.body}>{post.body}</div>
-        <div>
-          <button
-            className={styles.indivPageButton}
-            onClick={() => {
-              router.push(`/${post._id}/edit`);
-            }}
-          >
-            Edit Post
-          </button>
-        </div>
-      </div>
+
+      <PostPage info={post} />
 
       <div className={styles.box}>
-        <div className={styles.comments}>
-          <div className={styles.commentsLogo}>
-            <span className="material-symbols-outlined">Comment</span>
-          </div>
-          <div className={styles.comment}>
-            {`${post.comments.length}`} Comments
-          </div>
-        </div>
-        {post.comments.length > 0 ? (
-          post.comments.map((c, index) => (
-            <div key={index}>
-              <div>{c.body}</div>
-              <div>{c.date}</div>
-            </div>
-          ))
-        ) : (
-          <div></div>
-        )}
-
         <div className={styles.form}>
           <form className={styles.input}>
             <textarea
@@ -94,6 +59,23 @@ const Post = (props) => {
         >
           Comment
         </button>
+        <div className={styles.comments}>
+          <div className={styles.commentsLogo}>
+            <span className="material-symbols-outlined">Comment</span>
+          </div>
+          <div className={styles.comment}>
+            {`${post.comments.length}`} Comments
+          </div>
+        </div>
+        {post.comments.length > 0 ? (
+          post.comments.map((c, index) => (
+            <div key={index}>
+              <Comment info={c} />
+            </div>
+          ))
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );
