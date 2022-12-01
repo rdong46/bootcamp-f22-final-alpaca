@@ -23,6 +23,8 @@ export default function Edit() {
   return (
     <div className={styles.main}>
       <h1 className={styles.head}> Edit Your Post </h1>
+      
+
       <form className={styles.input}>
         <input
           type="text"
@@ -34,6 +36,7 @@ export default function Edit() {
             setNewTitle(e.target.value);
           }}
         ></input>
+
         <textarea
           id="text"
           placeholder="test"
@@ -43,9 +46,11 @@ export default function Edit() {
             setNewBody(e.target.value);
           }}
         ></textarea>
+
       </form>
       <div className={styles.buttons}>
       <div>
+
           <button
             onClick={() => {
               router.push(`/${id}`);
@@ -53,7 +58,10 @@ export default function Edit() {
             className={styles.cancelButton}
           >
             ⬅️ Cancel
+
+            
           </button>
+
         </div>
         
         <div>
@@ -69,6 +77,8 @@ export default function Edit() {
             className={styles.deleteButton}
           >
             ❌ Delete
+
+
           </button>
         </div>
         <div>
@@ -98,6 +108,8 @@ export default function Edit() {
             className={styles.editButton}
           >
             ✏️ Edit
+
+
           </button>
         </div>
       </div>

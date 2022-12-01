@@ -22,6 +22,18 @@
   flex-direction: column;
 }
 
+.first {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  font-size: 12px;
+}
+
+.comment {
+  font-size: 15px;
+}
 .title {
   font-size: 17px;
   font-weight: bold;
@@ -35,19 +47,6 @@
 .comments {
   display: flex;
   gap: 3px;
-}
-
-.first {
-  display: flex;
-  justify-content: space-between;
-}
-
-.date {
-  font-size: 12px;
-}
-
-.comment {
-  font-size: 15px;
 }
 
 .button {
